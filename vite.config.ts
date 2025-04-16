@@ -1,13 +1,20 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import { copyFileSync } from 'fs';
+import * as fs from 'fs';
 
 // Copy CNAME file to dist after build
 const copyCNAME = () => {
   return {
     name: 'copy-cname',
     closeBundle() {
-      copyFileSync(resolve(__dirname, 'CNAME'), resolve(__dirname, 'dist', 'CNAME'));
+      const cnamePath = resolve(__dirname, 'CNAME');
+      const distCnamePath = resolve(__dirname, 'docs', 'CNAME');
+      if (fs.existsSync(cnamePath)) {
+        copyFileSync(cnamePath, distCnamePath);
+      } else {
+        console.warn('CNAME file not found. Skipping copy.');
+      }
     },
   };
 };

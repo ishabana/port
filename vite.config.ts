@@ -14,5 +14,8 @@ const copyCNAME = () => {
 
 export default defineConfig({
   base: '/', // Set base to '/' for custom domain
+  build: {
+    outDir: 'docs', // Set output directory to 'docs/' for GitHub Pages
+  },
   plugins: [copyCNAME()],
 });

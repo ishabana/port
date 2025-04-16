@@ -13,6 +13,6 @@ const copyCNAME = () => {
 };
 
 export default defineConfig({
-  base: '/port/', // updated to match repository name
+  base: '/', // Set base to '/' for custom domain
   plugins: [copyCNAME()],
 });
